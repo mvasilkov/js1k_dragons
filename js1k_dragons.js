@@ -1,11 +1,23 @@
 z=2*Math.PI
 w=a.width
 h=a.height
-a.style.background='#2c3e50'
 R=Math.random
 c.globalCompositeOperation='lighter'
 p=[]
 s=(N=Date.now)()
+
+m=a.cloneNode(0)
+n=m.getContext('2d')
+n.fillStyle='#2a2430'
+n.fillRect(0,0,w,h)
+n.fillStyle='#333044'
+n.fillRect(0,0,w,h/2+100)
+n.translate(w/2,h/2)
+n.beginPath()
+n.arc(200,-260,30,0,z)
+n.fillStyle='#fff9af'
+n.fill()
+
 ~function L(){
     requestAnimationFrame(L)
     t=N()-s
@@ -20,6 +32,7 @@ s=(N=Date.now)()
 
     t/=4
     c.clearRect(0,0,w,h)
+    c.drawImage(m,0,0)
 
     for(i=p.length;i--;){
         q=p[i]
