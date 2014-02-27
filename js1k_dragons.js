@@ -1,24 +1,34 @@
 w=a.width
 h=a.height
+a.style.background='#2a2430'
 c.globalCompositeOperation='lighter'
 p=[]
-with(Math)z=2*PI,R=random,C=cos,S=sin
+with(Math)z=2*PI,y=PI/3,R=random,C=cos,S=sin,Q=sqrt
 s=(N=Date.now)()
 
 m=a.cloneNode(0)
 n=m.getContext('2d')
-n.fillStyle='#2a2430'
-n.fillRect(0,0,w,h)
-n.fillStyle='#333044'
-n.fillRect(0,0,w,h/2+100)
 n.translate(w/2,h/2)
 n.beginPath()
-n.arc(200,-260,30,0,z)
+n.arc(200,-250,30,0,z)
 n.fillStyle='#fff9af'
 n.fill()
 
-n.strokeStyle='#50ffff'
+function A(a,b){d=Q(a*a+b*b)
+    p.push(a*C(y)-b*S(y),S(d/100)*100-C(d/25)*8,a*S(y)+b*C(y))}
 
+for(j=120;j>=-120;j-=10)
+    for(i=-120;i<=120;i+=10)A(i-5,j-5),A(i-5,j+5),A(i+5,j+5),A(i+5,j-5),p.push(0,0,0)
+
+n.fillStyle='#2a2430'
+n.strokeStyle='#50ffff'
+n.beginPath()
+
+for(i=0;i<p.length-2;i+=3)
+    if(p[i])k=250/(p[i+2]+250),n.lineTo(k*p[i],k*p[i+1])
+    else n.closePath(),n.fill(),n.stroke(),n.beginPath()
+
+p=[]
 n=c
 ~function L(){
     requestAnimationFrame(L)
