@@ -1,6 +1,5 @@
 w=a.width
 h=a.height
-a.style.background='#2a2430'
 c.globalCompositeOperation='lighter'
 p=[]
 with(Math)z=2*PI,y=PI/3,R=random,C=cos,S=sin,Q=sqrt
@@ -8,6 +7,8 @@ s=(N=Date.now)()
 
 m=a.cloneNode(0)
 n=m.getContext('2d')
+n.fillStyle='#2a2430'
+n.fillRect(0,0,w,h)
 n.translate(w/2,h/2)
 n.beginPath()
 n.arc(200,-250,30,0,z)
@@ -65,7 +66,6 @@ n.strokeStyle='#c2ff14'
 
     for(j=r.length;j--;){
         r[j]+=t/20
-        while(r[j]>z)r[j]-=z
 
         n.beginPath()
 
