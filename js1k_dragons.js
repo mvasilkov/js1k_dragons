@@ -28,8 +28,11 @@ for(i=0;i<p.length-2;i+=3)
     if(p[i])k=250/(p[i+2]+250),n.lineTo(k*p[i],k*p[i+1])
     else n.closePath(),n.fill(),n.stroke(),n.beginPath()
 
+r=[0,10,z/3,-20,z/3*2,-50]
+
 p=[]
 n=c
+n.strokeStyle='#c2ff14'
 ~function L(){
     requestAnimationFrame(L)
     t=N()-s
@@ -58,5 +61,20 @@ n=c
         n.fill()
 
         if((q.l+=t)>60)p.splice(i,1)
+    }
+
+    for(j=0;j<r.length;j+=2){
+        r[j]+=t/20
+        while(r[j]>z)r[j]-=z
+
+        n.beginPath()
+
+        k=250/(150*S(r[j]-.12)+250)
+        n.moveTo(w/2+150*k*C(r[j]-.1),h/2+k*r[j+1])
+
+        k=250/(150*S(r[j]+.12)+250)
+        n.lineTo(w/2+150*k*C(r[j]+.1),h/2+k*r[j+1])
+
+        n.stroke()
     }
 }()
